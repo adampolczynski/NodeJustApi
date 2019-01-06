@@ -39,8 +39,8 @@ export const env = {
         route: getOsEnv('AUTH_ROUTE'),
     },
     db: {
-        type: 'postgres',//getOsEnv('TYPEORM_CONNECTION'),
-        host: 'localhost',//getOsEnv('TYPEORM_HOST'),
+        type: getOsEnv('TYPEORM_CONNECTION'),
+        host: getOsEnv('TYPEORM_HOST'),
         port: toNumber(getOsEnv('TYPEORM_PORT')),
         username: getOsEnv('TYPEORM_USERNAME'),
         password: getOsEnv('TYPEORM_PASSWORD'),
@@ -51,6 +51,6 @@ export const env = {
     log: {
         level: 'info',
         json: false,
-        output: ''
+        output: 'dev'
     }
 }

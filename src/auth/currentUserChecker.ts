@@ -3,7 +3,7 @@ import { Connection } from 'typeorm';
 
 import { User } from '../api/models/User';
 import { Logger } from '../lib/logger';
-import { TokenInfoInterface } from './TokenInfoInterface';
+import { ITokenInfo } from '../../types/ITokenInfo';
 
 export function currentUserChecker(connection: Connection): (action: Action) => Promise<User | undefined> {
     const log = new Logger(__filename);
@@ -12,8 +12,7 @@ export function currentUserChecker(connection: Connection): (action: Action) => 
         // here you can use request/response objects from action
         // you need to provide a user object that will be injected in controller actions
         // demo code:
-        console.log(action.request.tokeninfo)
-        const tokeninfo: TokenInfoInterface = action.request.tokeninfo;
+        const tokeninfo: ITokenInfo = action.request.tokeninfo;
         const em = connection.createEntityManager();
         const user = await em.findOne<User>(User, {
             where: {

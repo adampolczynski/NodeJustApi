@@ -12,7 +12,6 @@ export class ErrorHandlerMiddleware implements ExpressErrorMiddlewareInterface {
     constructor(
         @Logger(__filename) private log: LoggerInterface
     ) {
-        console.log(log)
     }
 
     public error(error: HttpError, req: express.Request, res: express.Response, next: express.NextFunction): void {

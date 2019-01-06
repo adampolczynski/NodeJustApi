@@ -5,7 +5,7 @@ import { Service } from 'typedi';
 
 import { Logger, LoggerInterface } from '../decorators/Logger';
 import { env } from '../env';
-import { TokenInfoInterface } from './TokenInfoInterface';
+import { ITokenInfo } from '../../types/ITokenInfo';
 
 @Service()
 export class AuthService {
@@ -36,7 +36,7 @@ export class AuthService {
         return undefined;
     }
 
-    public getTokenInfo(token: string): Promise<TokenInfoInterface> {
+    public getTokenInfo(token: string): Promise<ITokenInfo> {
         return new Promise((resolve, reject) => {
 
             const x  = jwt.verify(token, 'superSecret')

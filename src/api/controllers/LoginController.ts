@@ -15,7 +15,9 @@ export class LoginController {
     constructor(
         private loginService: LoginService,
         private userService: UserService
-    ) { }
+    ) {
+        console.log('login route')
+     }
 
     @Post()
     public async login( @Body() data: ILoginData): Promise<LoginResponse> {
