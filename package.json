@@ -1,0 +1,23 @@
+{
+  "name": "just-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adam Polczynski",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "lodash": "^4.17.4",
+    "pg": "^7.4.3",
+    "reflect-metadata": "^0.1.12",
+    "routing-controllers": "^0.7.7",
+    "tslint": "^5.8.0",
+    "typeorm": "^0.2.1",
+    "typescript": "2.8.3",
+    "winston": "^2.4.0"
+  },
+  "devDependencies": {}
+}
