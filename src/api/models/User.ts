@@ -44,8 +44,8 @@ export class User {
     // @Column()
     // public photo: string;
 
-    // @Column({ name: 'fb_photo' })
-    // public fbPhoto: string;
+    @Column({ name: 'fb_photo' })
+    public fbPhoto: string;
 
     @Column({ default: false })
     public activated: boolean;

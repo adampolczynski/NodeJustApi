@@ -5,8 +5,8 @@ import {
 import { UserNotFoundError } from '../errors/UserNotFoundError';
 import { User } from '../models/User';
 import { UserService } from '../services/UserService';
-import { RegisterResponse } from './responses/RegisterResponse';
 import { LoginService } from '../services/LoginService';
+import { IResponse } from 'types/IResponse';
 
 @JsonController('/login/fb')
 export class FbRegisterController {
@@ -17,10 +17,10 @@ export class FbRegisterController {
     ) { }
 
     @Post()
-    public async register( @Body() user: any): Promise<RegisterResponse> {
+    public async register( @Body() user: any): Promise<IResponse> {
 
         // parse fb photo
-        this.parseUser(user);
+        user.fbPhoto = JSON.parse(user.fbPhoto).data.url;
 
         const u = await this.userService.findByEmail(user.email);
         let res;
@@ -38,11 +38,4 @@ export class FbRegisterController {
             token: res.token,
         };
     }
-
-    private parseUser(fbUser: User): User {
-        //const temp = JSON.parse(fbUser.fbPhoto);
-        //fbUser.fbPhoto = temp.data.url;
-        return fbUser;
-    }
-
 }

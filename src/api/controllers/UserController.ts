@@ -5,6 +5,7 @@ import {
 import { UserNotFoundError } from '../errors/UserNotFoundError';
 import { User } from '../models/User';
 import { UserService } from '../services/UserService';
+import { IResponse } from 'types/IResponse';
 
 // @Authorized()
 @JsonController('/users')
@@ -16,28 +17,40 @@ export class UserController {
 
     @Get()
 //    public find( @CurrentUser() user?: User): Promise<User[]> {
-    public find( user?: User): Promise<User[]> {
-        return this.userService.find();
+    public async find( user?: User): Promise<IResponse> {
+        return { 
+            success: true,
+            data: await this.userService.find(),
+        }
     }
 
     @Get('/:id')
     @OnUndefined(UserNotFoundError)
-    public one( @Param('id') id: number): Promise<User | undefined> {
-        return this.userService.findOne(id);
+    public async one( @Param('id') id: number): Promise<IResponse> {
+        return {
+            success: true,
+            data: await this.userService.findOne(id)
+        }
     }
 
     @Post()
-    public create( @Body() user: User): Promise<User> {
-        return this.userService.create(user);
+    public async create( @Body() user: User): Promise<IResponse> {
+        return {
+            success: true,
+            data: await this.userService.create(user)
+        }
     }
 
     @Put('/:id')
-    public update( @Param('id') id: number, @Body() user: User): Promise<User> {
-        return this.userService.update(id, user);
+    public async update( @Param('id') id: number, @Body() user: User): Promise<IResponse> {
+        return {
+            success: true,
+            data: await this.userService.update(id, user)
+        }
     }
 
     @Delete('/:id')
-    public delete( @Param('id') id: number): Promise<void> {
+    public async delete( @Param('id') id: number): Promise<void> {
         return this.userService.delete(id);
     }
 

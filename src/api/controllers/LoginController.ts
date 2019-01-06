@@ -5,9 +5,9 @@ import {
 import { UserNotFoundError } from '../errors/UserNotFoundError';
 import { User } from '../models/User';
 import { LoginService } from '../services/LoginService';
-import { LoginResponse } from './responses/LoginResponse';
 import { UserService } from '../services/UserService';
-import { ILoginData } from '../../../types/ILoginData';
+import { ILoginData } from 'types/ILoginData';
+import { IResponse } from 'types/IResponse';
 
 @JsonController('/login')
 export class LoginController {
@@ -20,7 +20,7 @@ export class LoginController {
      }
 
     @Post()
-    public async login( @Body() data: ILoginData): Promise<LoginResponse> {
+    public async login( @Body() data: ILoginData): Promise<IResponse> {
 
         const response = await this.loginService.login(data);
 

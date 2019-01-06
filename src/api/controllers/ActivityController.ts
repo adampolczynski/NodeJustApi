@@ -5,6 +5,7 @@ import {
 import { ActivityNotFoundError } from '../errors/ActivityNotFoundError';
 import { Activity } from '../models/Activity';
 import { ActivityService } from '../services/ActivityService';
+import { IResponse } from 'types/IResponse';
 
 //@Authorized()
 @JsonController('/activities')
@@ -16,7 +17,7 @@ export class ActivityController {
 
 
     @Get()
-    public async find(): Promise<any> {
+    public async find(): Promise<IResponse> {
 
         const a = await this.activityService.find();
 
@@ -28,18 +29,27 @@ export class ActivityController {
 
     @Get('/:id')
     @OnUndefined(ActivityNotFoundError)
-    public one( @Param('id') id: number): Promise<Activity | undefined> {
-        return this.activityService.findOne(id);
+    public async one( @Param('id') id: number): Promise<IResponse> {
+        return {
+            success: true,
+            data: await this.activityService.findOne(id)
+        }
     }
 
     @Post()
-    public create( @Body() activity: Activity): Promise<Activity> {
-        return this.activityService.create(activity);
+    public async create( @Body() activity: Activity): Promise<IResponse> {
+        return {
+            success: true,
+            data: await this.activityService.create(activity)
+        }
     }
 
     @Put('/:id')
-    public update( @Param('id') id: number, @Body() activity: Activity): Promise<Activity> {
-        return this.activityService.update(id, activity);
+    public async update( @Param('id') id: number, @Body() activity: Activity): Promise<IResponse> {
+        return {
+            success: true,
+            data: await this.activityService.update(id, activity)
+        }
     }
 
     @Delete('/:id')

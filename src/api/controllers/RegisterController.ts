@@ -5,7 +5,7 @@ import {
 import { UserNotFoundError } from '../errors/UserNotFoundError';
 import { User } from '../models/User';
 import { LoginService } from '../services/LoginService';
-import { RegisterResponse } from './responses/RegisterResponse';
+import { IResponse } from 'types/IResponse';
 
 @JsonController('/register')
 export class RegisterController {
@@ -15,7 +15,7 @@ export class RegisterController {
     ) { }
 
     @Post()
-    public async register( @Body() user: User): Promise<RegisterResponse> {
+    public async register( @Body() user: User): Promise<IResponse> {
 
         const res = await this.loginService.register(user);
 
