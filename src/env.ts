@@ -5,13 +5,16 @@ import { getOsEnv, getOsEnvArray, normalizePort, toBool, toNumber } from './lib/
 dotenv.config({ path: path.join(process.cwd(), `.env${((process.env.NODE_ENV === 'test') ? '.test' : '')}`) });
 
 export const env = {
-    node: 'development',
-    isProduction: false,
+    node: process.env.NODE_ENV || 'development',
+    isProduction: process.env.NODE_ENV === 'production',
+    isTest: process.env.NODE_ENV === 'test',
+    isDevelopment: process.env.NODE_ENV === 'development',
     app: {
-        name: 'just-api',
-        routePrefix: '/api',
-        host: 'localhost',
-        port: 4000,
+        name: getOsEnv('APP_NAME'),
+        host: getOsEnv('APP_HOST'),
+        schema: getOsEnv('APP_SCHEMA'),
+        routePrefix: getOsEnv('APP_ROUTE_PREFIX'),
+        port: normalizePort(process.env.PORT || getOsEnv('APP_PORT')),
         dirs: {
             entities: (
                 getOsEnvArray('TYPEORM_ENTITIES') ||
