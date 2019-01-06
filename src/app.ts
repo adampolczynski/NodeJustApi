@@ -36,7 +36,6 @@ bootstrapMicroframework({
     ],
 })
     .then(() => {
-        console.log('asdasd')
         log.info('JustApi started.')
     })
     .catch(error => log.error('Application is crashed: ' + error));

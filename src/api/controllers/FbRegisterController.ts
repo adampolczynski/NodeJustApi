@@ -40,8 +40,8 @@ export class FbRegisterController {
     }
 
     private parseUser(fbUser: User): User {
-        const temp = JSON.parse(fbUser.fbPhoto);
-        fbUser.fbPhoto = temp.data.url;
+        //const temp = JSON.parse(fbUser.fbPhoto);
+        //fbUser.fbPhoto = temp.data.url;
         return fbUser;
     }
 

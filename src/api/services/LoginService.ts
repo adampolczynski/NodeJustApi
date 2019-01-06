@@ -9,7 +9,7 @@ import { UserService } from '../services/UserService';
 import { events } from '../subscribers/events';
 
 import * as jwt from 'jsonwebtoken';
-import { ILoginData } from '../types/ILoginData';
+import { ILoginData } from '../../../types/ILoginData';
 
 import { isNil } from 'lodash';
 

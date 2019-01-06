@@ -6,6 +6,7 @@ dotenv.config({ path: path.join(process.cwd(), `.env${((process.env.NODE_ENV ===
 
 export const env = {
     node: 'development',
+    isProduction: false,
     app: {
         name: 'just-api',
         routePrefix: '/api',
@@ -38,8 +39,8 @@ export const env = {
         route: getOsEnv('AUTH_ROUTE'),
     },
     db: {
-        type: getOsEnv('TYPEORM_CONNECTION'),
-        host: getOsEnv('TYPEORM_HOST'),
+        type: 'postgres',//getOsEnv('TYPEORM_CONNECTION'),
+        host: 'localhost',//getOsEnv('TYPEORM_HOST'),
         port: toNumber(getOsEnv('TYPEORM_PORT')),
         username: getOsEnv('TYPEORM_USERNAME'),
         password: getOsEnv('TYPEORM_PASSWORD'),
